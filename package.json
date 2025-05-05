@@ -1,0 +1,22 @@
+{
+  "name": "04-clean-code",
+  "version": "1.0.0",
+  "description": "- Domain Experts\r     - Conversa\r - Linguagem ubiqua",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.17.32",
+    "typescript": "5.8.3",
+    "vite-tsconfig-paths": "4.3.2",
+    "vitest": "3.1.2"
+  },
+  "dependencies": {
+    "dayjs": "1.11.13"
+  }
+}
