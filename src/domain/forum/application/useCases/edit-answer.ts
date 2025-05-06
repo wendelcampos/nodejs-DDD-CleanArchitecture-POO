@@ -1,3 +1,4 @@
+import { Answer } from "../../enterprise/entities/answer";
 import { AnswersRepository } from "../repositories/answers-repository";
 
 interface EditAnswerUseCaseRequest {
@@ -6,7 +7,9 @@ interface EditAnswerUseCaseRequest {
     content: string;
 }
 
-interface EditAnswerUseCaseResponse {}
+interface EditAnswerUseCaseResponse {
+    answer: Answer
+}
 
 export class EditAnswerUseCase {
 
@@ -22,11 +25,13 @@ export class EditAnswerUseCase {
         if(authorId !== answer.authorId.toString()) {
             throw new Error('Not allowed')
         }
-        
+
         answer.content = content
 
         await this.answerRepository.save(answer)
 
-        return {}
+        return {
+            answer
+        }
     }
 }
