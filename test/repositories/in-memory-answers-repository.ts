@@ -4,7 +4,7 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     
     public items: Answer[] = [];
 
-    async findById(id: string): Promise<Answer | null> {
+    async findById(id: string) {
         const answer = this.items.find((item) => item.id.toString() === id);
 
         if (!answer) {
@@ -18,7 +18,14 @@ export class InMemoryAnswersRepository implements AnswersRepository {
         this.items.push(answer);
     }
 
-    async delete(answer: Answer): Promise<void> {
+    async save(answer: Answer){
+        const itemIndex = this.items.findIndex((item) => item.id === answer.id);
+
+        this.items[itemIndex] = answer;
+
+    }
+
+    async delete(answer: Answer) {
         const itemIndex = this.items.findIndex((item) => item.id === answer.id);
 
         if (itemIndex >= 0) {
