@@ -1,11 +1,28 @@
 import { AnswerCommentRepository } from "@/domain/forum/application/repositories/answer-comments-repository";
 import { AnswerComment } from "@/domain/forum/enterprise/entities/answer-comment";
-
 export class InMemoryAnswerCommentsRepository implements AnswerCommentRepository {
     public items: AnswerComment[] = [];
+
+    async findById(id: string) {
+        const answerComment = this.items.find((item) => item.id.toString() === id);
+
+        if (!answerComment) {
+            return null
+        }
+
+        return answerComment;
+    }
 
     async create(answerComment: AnswerComment) {
         this.items.push(answerComment);
     }
-  
+
+    async delete(answerComment: AnswerComment): Promise<void> {
+        const itemIndex = this.items.findIndex((item) => item.id === answerComment.id);
+
+        if (itemIndex >= 0) {
+            this.items.splice(itemIndex, 1);
+        }
+    }
+
 }
