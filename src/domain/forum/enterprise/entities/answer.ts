@@ -50,7 +50,7 @@ export class Answer extends Entity<AnswerProps> {
     static create(props: Optional<AnswerProps, 'createAt'>, id?: UniqueEntityID) {
         const answer = new Answer({ 
             ...props, 
-            createAt: new Date()
+            createAt: props.createAt ?? new Date()
         }, id)
 
         return answer
