@@ -20,3 +20,32 @@ Design dirigido a dominio
 - Subdominios (Bounded Contexts)
 - Entidades
 - Casos de uso
+  
+# Conceitos
+
+- Aggregate
+- Whatchedlist
+
+## Exemplo
+a
+- Order -> OrderItem[]
+- Order -> Shipping
+
+- Question -> Attachment[]
+
+### Criação
+
+- Titulo
+- Conteudo
+- Anexos (3)
+
+### Edição
+
+- Titulo
+- Conteudo
+
+- Adicionar um novo anexo (create)
+- Remover o segundo anexo que tinha sido criado previamente (delete)
+- Editar um anexo existente (update)
+
+
