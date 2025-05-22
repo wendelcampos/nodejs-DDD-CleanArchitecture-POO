@@ -7,12 +7,14 @@ import { InMemoryQuestionAttachmentRepository } from 'test/repositories/in-memor
 import { makeQuestionAttachment } from 'test/factories/make-question-attachment';
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentRepository
 let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository
 let sut: EditQuestionUseCase
 
 describe('Edit Question', () => {
     beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
+        inMemoryQuestionAttachmentsRepository = new InMemoryQuestionAttachmentRepository()
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentsRepository)
         inMemoryQuestionAttachmentRepository = new InMemoryQuestionAttachmentRepository()
         sut = new EditQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionAttachmentRepository)
     })
