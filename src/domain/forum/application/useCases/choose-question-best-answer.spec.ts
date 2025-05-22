@@ -4,9 +4,11 @@ import { makeAnswer } from 'test/factories/make-answer';
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository';
 import { ChooseQuestionBestAnswerUseCase } from './choose-question-best-answer';
 import { makeQuestion } from 'test/factories/make-question';
-import { ResourceNotFoundError } from './errors/resource-not-found-error';
 import { InMemoryQuestionAttachmentRepository } from 'test/repositories/in-memory-question-attachment-repository';
+import { NotAllowedError } from './errors/not-allowed-error';
+import { InMemoryAnswerAttachmentRepository } from 'test/repositories/in-memory-answer-attachment-repository';
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
@@ -14,9 +16,10 @@ let sut: ChooseQuestionBestAnswerUseCase
 
 describe('Choose Question Best Answer', () => {
     beforeEach(() => {
+        inMemoryAnswerAttachmentsRepository = new InMemoryAnswerAttachmentRepository()
         inMemoryQuestionAttachmentsRepository = new InMemoryQuestionAttachmentRepository()
         inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentsRepository)
-        inMemoryAnswersRepository = new InMemoryAnswersRepository()
+        inMemoryAnswersRepository = new InMemoryAnswersRepository(inMemoryAnswerAttachmentsRepository)
 
         sut = new ChooseQuestionBestAnswerUseCase(
             inMemoryQuestionsRepository,
@@ -60,7 +63,7 @@ describe('Choose Question Best Answer', () => {
             })
     
         expect(result.isLeft()).toBe(true)
-        expect(result.value).toBeInstanceOf(ResourceNotFoundError)
+        expect(result.value).toBeInstanceOf(NotAllowedError)
     })
 });
 

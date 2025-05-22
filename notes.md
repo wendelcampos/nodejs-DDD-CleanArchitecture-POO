@@ -48,4 +48,9 @@ a
 - Remover o segundo anexo que tinha sido criado previamente (delete)
 - Editar um anexo existente (update)
 
+# Subdominios
+
+- Core
+- Supporting
+- Generic
 

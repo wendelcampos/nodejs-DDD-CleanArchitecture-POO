@@ -7,7 +7,7 @@ export interface AnswerAttachmentProps {
 }
 
 export class AnswerAttachment extends Entity<AnswerAttachmentProps> {
-    get questionId() {
+    get answerId() {
         return this.props.answerId;
     }
 

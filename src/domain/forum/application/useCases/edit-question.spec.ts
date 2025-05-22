@@ -8,15 +8,13 @@ import { makeQuestionAttachment } from 'test/factories/make-question-attachment'
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentRepository
-let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository
 let sut: EditQuestionUseCase
 
 describe('Edit Question', () => {
     beforeEach(() => {
         inMemoryQuestionAttachmentsRepository = new InMemoryQuestionAttachmentRepository()
         inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentsRepository)
-        inMemoryQuestionAttachmentRepository = new InMemoryQuestionAttachmentRepository()
-        sut = new EditQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionAttachmentRepository)
+        sut = new EditQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionAttachmentsRepository)
     })
 
     it('should be able to edit a question', async () => {
@@ -26,7 +24,7 @@ describe('Edit Question', () => {
 
         await inMemoryQuestionsRepository.create(newQuestion)
 
-        inMemoryQuestionAttachmentRepository.items.push(
+        inMemoryQuestionAttachmentsRepository.items.push(
             makeQuestionAttachment({
                 questionId: newQuestion.id,
                 attachmentId: new UniqueEntityID('1')

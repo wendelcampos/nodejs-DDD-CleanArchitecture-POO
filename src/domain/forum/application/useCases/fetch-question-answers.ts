@@ -14,7 +14,7 @@ export class FetchQuestionAnswersUseCase {
         constructor( private answersRepository: AnswersRepository) {}
 
         async execute({ page, questionId }: FetchQuestionAnswersUseCaseRequest): Promise<FetchQuestionAnswersUseCaseResponse> {
-           const answers = await this.answersRepository.findManyByQuestionId(questionId, { page })
+           const answers = await this.answersRepository.findManyByAnswerId(questionId, { page })
 
            return right({ answers })
     }

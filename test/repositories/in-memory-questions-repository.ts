@@ -9,7 +9,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
         private questionAttachmentRepository: QuestionAttachmentsRepository,
     ){}
 
-    async findById(id: string): Promise<Question | null> {
+    async findById(id: string) {
         const question = this.items.find((item) => item.id.toString() === id);
 
         if (!question) {
@@ -48,7 +48,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 
     }
 
-   async delete(question: Question): Promise<void> {
+   async delete(question: Question){
         const itemIndex = this.items.findIndex((item) => item.id === question.id);
 
         this.items.splice(itemIndex, 1);
